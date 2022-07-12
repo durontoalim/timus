@@ -4,13 +4,18 @@ using namespace std;
 
 int main()
 {
-    int a,b,sum;
+    vector<long long int> n;
+    long long int N;
 
-    cin>>a>>b;
+    while(cin>>N){
+        n.push_back(N);
+    }
 
-    sum = a+b;
+    for (int i = n.size() - 1; i >= 0; i-- )
+    {
+        cout<<fixed<<setprecision(4)<<sqrt(double(n[i]))<<endl;
+    }
 
-    cout<<sum<<endl;
 
     return 0;
 }
