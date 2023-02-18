@@ -1,40 +1,47 @@
 #include <bits/stdc++.h>
-
 using namespace std;
+#define int long long
 
-int main()
+#define M 1000000000
+bool marked[M];
+vector<int> v;
+
+void sieve(int n){
+	for (int i = 4; i <= n; i += 2)
+	{
+		marked[i] = true;
+	}
+	
+	for (int i = 3; i*i <= n; i += 2)
+	{
+		if(marked[i] == false){
+			for (int j = i*i ; j <= n; j += i+i)
+			{
+				marked[j] = true;
+			}
+		}
+	}
+	for (int i = 2; i <= n; i++)
+	{
+		if(marked[i] == false){
+			v.push_back(i);
+		}
+	}
+}
+
+int32_t main()
 {
-    int N,count, arr[15001],t=1,posi,n;
+	sieve(1000000);
 
-    N = 15000;
+	int t; cin>>t;
 
-    cin>>n;
+	while (t--)
+	{
+		int n; cin>>n;
+		
+		cout<<v[n-1]<<endl;
+	}
+	
 
-        arr[0] = 2;
-
-        for(int i=3; i < N; i++){
-            count = 0;
-            for(int j=2; j < i; j++){
-                if(i % j == 0){
-                    count++;
-                    break;
-                }
-            }
-            if(count == 0){
-                arr[t] = i;
-                t++;
-            }
-        }
-
-        while(n--){
-            cin>>posi;
-            cout<<arr[posi-1]<<endl;
-        }
-    
-    
-    
-
-
-
-    return 0;
+	return 0;
 }
